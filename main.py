@@ -7,19 +7,23 @@ import json
 import time
 import os
 
+import control_DB
+
 ##################### Global #####################
 #constants
 PWD         = os.path.dirname(os.path.realpath(__file__))       #returns path to project folder
-DB_PATH     = PWD + '/dbfile'
+DB_PATH     = 'database.db'
 IMAGE_PATH  = PWD + '/tmp.jpg'
 api_url     = 'https://api.openalpr.com/v2/recognize_bytes?recognize_vehicle=1&country=us&secret_key=sk_d1f041e7fe7cef9f91f69fad'
 plate1      = "plate1"
 plate2      = "plate3"
 plate3      = "plate3"
+DELAY       = 5                                                 # time for servo opening
 
 # Pin Configuration
-LASER    = 11
-DETECTOR = 13
+servo_pin = 11
+LASER     = 13
+DETECTOR  = 15
 
 ################### Funcutions ###################
 def wait_for_cars():
@@ -28,22 +32,38 @@ def wait_for_cars():
         time.sleep(1)
 
 def check_plates(plate1, plate2, plate3):
-    pass
+    c.execute("SELECT * FROM cars")
+    s = c.fetchone()
+    while s is not None:
+        if s[1] in (plate1, plate2, plate3)
+            allowed_fun(s)
+            break
 
-def allowed_fun(p):
-    pass
+def allowed_fun(s):
+    print(s[0] + " Car Found")
+    # open servo
+    servo_angle(90)
+    time.sleep(DELAY)
+    servo_angle(0)
 
-def rejected_fun():
-    pass
+def servo_angle(angle):
+    duty = angle/18 + 2.5
+    GPIO.output(servo_pin, True)
+    servo_pwm.ChangeDutyCycle(duty)
 
 ##################### setup ######################
 # setting up GPIO
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(LASER ,GPIO.OUT)
 GPIO.setup(DETECTOR ,GPIO.IN)
+GPIO.setup(servo_pin, GPIO.OUT)
+servo_pwm = GPIO.PWM(servo_pin, 50)                 #Servo PWM
+servo_pwm.start(0)
 
-######## reading database
-
+######## database
+conn = sqlite3.connect(DB_PATH)
+c = conn.cursor()
+control_DB.init_db()
 
 ###################### loop ######################
 while True :
