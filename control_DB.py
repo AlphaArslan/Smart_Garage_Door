@@ -31,7 +31,7 @@ def show_data():
     c.execute("SELECT * FROM cars")
     s = c.fetchone()
     while s is not None:
-        print(s[1])
+        print(s)
         s = c.fetchone()
 
 ###################### Main
