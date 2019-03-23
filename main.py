@@ -39,6 +39,7 @@ def check_plates(plate1, plate2, plate3):
         if s[1] in (plate1, plate2, plate3):
             allowed_fun(s)
             break
+        s = c.fetchone()
 
 def allowed_fun(s):
     print(s[0] + " Car Found")
