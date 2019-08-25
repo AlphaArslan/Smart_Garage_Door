@@ -11,12 +11,11 @@ import sqlite3
 import control_DB
 
 ##################### Global #####################
-#constants
 PWD         = os.path.dirname(os.path.realpath(__file__))       #returns path to project folder
 DB_PATH     = 'database.db'
 IMAGE_PATH  = PWD + '/tmp.jpg'
-api_url     = 'https://api.openalpr.com/v2/recognize_bytes?recognize_vehicle=1&country=us&secret_key=sk_d1f041e7fe7cef9f91f69fad'
-plate1      = "plate1"
+api_url     = 'https://api.openalpr.com/v2/recognize_bytes?recognize_vehicle=1&country=sa&secret_key=sk_d1f041e7fe7cef9f91f69fad'
+plate1      = "plate3"
 plate2      = "plate3"
 plate3      = "plate3"
 DELAY       = 5                                                 # time for servo opening
@@ -28,9 +27,9 @@ DETECTOR  = 15
 
 ################### Funcutions ###################
 def wait_for_cars():
-    while GPIO.input(DETECTOR) is True:
+    while (GPIO.input(DETECTOR)==1):
         print('--- Waiting for cars')
-        time.sleep(1)
+        time.sleep(2)
 
 def check_plates(plate1, plate2, plate3):
     c.execute("SELECT * FROM cars")
@@ -39,7 +38,6 @@ def check_plates(plate1, plate2, plate3):
         if s[1] in (plate1, plate2, plate3):
             allowed_fun(s)
             break
-        s = c.fetchone()
 
 def allowed_fun(s):
     print(s[0] + " Car Found")
@@ -52,6 +50,7 @@ def servo_angle(angle):
     duty = angle/18 + 2.5
     GPIO.output(servo_pin, True)
     servo_pwm.ChangeDutyCycle(duty)
+
 
 ##################### setup ######################
 # setting up GPIO
@@ -73,10 +72,11 @@ while True :
         wait_for_cars()
 
         ######## capture the image and save it
-        with picamera.PiCamera() as camera:
+        with picamera. PiCamera() as camera:
                 camera.resolution = (1280 , 720)
                 camera.capture(IMAGE_PATH)
         print("--  Picture token")
+        time.sleep(5)
 
         ######## process the image to get plates
         with open(IMAGE_PATH, 'rb') as image_file:
