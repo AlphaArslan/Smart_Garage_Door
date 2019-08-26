@@ -5,10 +5,7 @@ opens automatically when it sees your plate number
 ## Table of contents  
 - [How it works](#how-it-works)
 - [Prerequisites](#prerequisites)
-- [Getting started](#getting-started)
-    * [image_process.py](#image_processpy)
-    * [seq_image_process.py](#seq_image_processpy)
-    * [vid_process.py](vid_processpy)
+
 <p></p>
 
 ## How it works
