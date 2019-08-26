@@ -40,7 +40,7 @@ then go to interfaces and __enable camera module__
 1. [Register in OpenALPR](https://cloud.openalpr.com/account/register)
 1. [Get your secret key](https://cloud.openalpr.com/cloudapi/)
 <p align="center">
-  <img width="800" height="512" src="https://github.com/AlphaArslan/ML_Traffic_Detection_Tracking/blob/master/demo.gif">
+  <img width="800" height="512" src="https://github.com/AlphaArslan/Smart_Garage_Door/blob/master/secret_key.png">
 </p>
 1. add your key here
 ```python
