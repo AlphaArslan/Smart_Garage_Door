@@ -14,7 +14,8 @@ import control_DB
 PWD         = os.path.dirname(os.path.realpath(__file__))       #returns path to project folder
 DB_PATH     = 'database.db'
 IMAGE_PATH  = PWD + '/tmp.jpg'
-api_url     = 'https://api.openalpr.com/v2/recognize_bytes?recognize_vehicle=1&country=sa&secret_key=sk_d1f041e7fe7cef9f91f69fad'
+secret_Key  = "sk_d1f041eXXXXXXXXXXXXXXXX"
+api_url     = 'https://api.openalpr.com/v2/recognize_bytes?recognize_vehicle=1&country=sa&secret_key='+secret_Key
 plate1      = "plate3"
 plate2      = "plate3"
 plate3      = "plate3"
