@@ -59,8 +59,10 @@ then go to interfaces and __enable camera module__
 
 3. If you want to reset the database the only option is to remove the file and recreate the database.
 
+4. Run the main script
+
 ```bash
   pyhton3 control_DB.py
 ```
 
-and let it flow XD 
+and let it flow XD
