@@ -40,6 +40,7 @@ then go to interfaces and __enable camera module__
   <img width="800" height="512" src="https://github.com/AlphaArslan/Smart_Garage_Door/blob/master/secret_key.png">
 </p>
 1. add your key here
+
 ```python
   secret_Key  = "sk_d1f041eXXXXXXXXXXXXXXXX"
 ```
